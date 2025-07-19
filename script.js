@@ -1,8 +1,5 @@
 const heartsContainer = document.getElementById('hearts-container');
 const confettiContainer = document.getElementById('confetti-container');
-const polaroidsContainer = document.querySelector('.polaroids-container');
-
-// Pas de micro ni bouton pour l'instant
 
 // 💜❤️ Coeurs qui tombent du haut dès l'ouverture
 function createHeart() {
@@ -40,5 +37,3 @@ function showConfetti() {
 }
 
 showConfetti();
-
-// Polaroids visibles par défaut (avec opacity:1 via la classe visible dans HTML)
