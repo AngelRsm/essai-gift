@@ -146,37 +146,23 @@ body {
   will-change: transform;
 }
 
-/* Polaroids container */
+/* Polaroids container with 2 columns layout */
 .polaroids-container {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  margin: 40px auto 0;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  width: 320px; /* 160 * 2 columns */
+  margin: 40px auto 0;
   gap: 20px;
-  z-index: 15; /* au-dessus des confettis */
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
+  z-index: 15;
 }
 
-.polaroids-container.visible {
-  opacity: 1;
-}
-
-/* Polaroid images */
+/* Polaroid images smaller */
 .polaroid {
-  width: 140px;
-  height: 180px;
-  object-fit: cover;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  border: 10px solid white;
-  border-radius: 10px;
-  transform-origin: center;
-  transition: transform 0.3s ease;
+  width: 150px;  /* plus petit */
+  height: auto;  /* garder ratio original */
   cursor: pointer;
-  filter: drop-shadow(0 0 5px rgba(0,0,0,0.15));
+
+  /* Animation floating verticale */
   animation-name: floating;
   animation-duration: 3s;
   animation-iteration-count: infinite;
@@ -184,7 +170,19 @@ body {
   animation-direction: alternate;
 }
 
-/* Floating animation */
+/* On sépare en deux colonnes grâce aux classes left / right */
+.polaroid.left {
+  align-self: flex-start;
+  /* On espace verticalement pour alterner les 3 à gauche */
+  margin-bottom: 20px;
+}
+
+.polaroid.right {
+  align-self: flex-end;
+  margin-bottom: 20px;
+}
+
+/* Animation floating simple */
 @keyframes floating {
   0% {
     transform: translateY(0);
@@ -192,20 +190,6 @@ body {
   100% {
     transform: translateY(-15px);
   }
-}
-
-/* Position + rotation fixe pour chaque polaroid */
-.polaroid1 { transform: rotate(-8deg); }
-.polaroid2 { transform: rotate(6deg); }
-.polaroid3 { transform: rotate(-4deg); }
-.polaroid4 { transform: rotate(7deg); }
-.polaroid5 { transform: rotate(-5deg); }
-.polaroid6 { transform: rotate(4deg); }
-
-/* Hover effect */
-.polaroid:hover {
-  transform: scale(1.1) rotate(0deg);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
 @keyframes confetti-fall {
