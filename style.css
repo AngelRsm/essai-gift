@@ -1,54 +1,60 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fdf6f0;
+  background: #fbeffb;
+  font-family: sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  font-family: sans-serif;
+  min-height: 100vh;
 }
 
-.container {
+.scene {
+  position: relative;
+  text-align: center;
+}
+
+.gateau {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.photos {
   display: flex;
-  gap: 60px;
+  justify-content: space-between;
+  width: 600px;
+  margin: 0 auto;
 }
 
-.column {
+.colonne {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .polaroid {
-  width: 150px;
+  width: 100px;
+  height: auto;
   opacity: 0;
-  transform: translateY(50px);
-  animation: fadeInUp 0.8s ease forwards;
+  transform: scale(0.9);
+  animation: floatIn 0.6s ease forwards;
 }
 
-.column.left .polaroid:nth-child(1) { animation-delay: 0.2s; }
-.column.left .polaroid:nth-child(2) { animation-delay: 0.6s; }
-.column.left .polaroid:nth-child(3) { animation-delay: 1s; }
+.colonne.gauche .polaroid:nth-child(1) { animation-delay: 0.1s; transform: rotate(-5deg); }
+.colonne.gauche .polaroid:nth-child(2) { animation-delay: 0.3s; transform: rotate(3deg); }
+.colonne.gauche .polaroid:nth-child(3) { animation-delay: 0.5s; transform: rotate(-6deg); }
 
-.column.right .polaroid:nth-child(1) { animation-delay: 0.4s; }
-.column.right .polaroid:nth-child(2) { animation-delay: 0.8s; }
-.column.right .polaroid:nth-child(3) { animation-delay: 1.2s; }
+.colonne.droite .polaroid:nth-child(1) { animation-delay: 0.2s; transform: rotate(5deg); }
+.colonne.droite .polaroid:nth-child(2) { animation-delay: 0.4s; transform: rotate(-2deg); }
+.colonne.droite .polaroid:nth-child(3) { animation-delay: 0.6s; transform: rotate(4deg); }
 
-@keyframes fadeInUp {
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
-}
-
-/* Floating animation */
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-
-.floating {
-  animation: float 3s ease-in-out infinite;
 }
