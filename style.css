@@ -1,65 +1,54 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fceef5;
+  background-color: #fdf6f0;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
   font-family: sans-serif;
 }
 
 .container {
   display: flex;
-  justify-content: space-between;
-  width: 90%;
-  max-width: 1000px;
-  padding: 20px;
+  gap: 60px;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 30px;
 }
 
 .polaroid {
-  width: 180px;
+  width: 150px;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(50px);
   animation: fadeInUp 0.8s ease forwards;
 }
 
-.left .polaroid:nth-child(1) { animation-delay: 0.1s; }
-.left .polaroid:nth-child(2) { animation-delay: 0.3s; }
-.left .polaroid:nth-child(3) { animation-delay: 0.5s; }
+.column.left .polaroid:nth-child(1) { animation-delay: 0.2s; }
+.column.left .polaroid:nth-child(2) { animation-delay: 0.6s; }
+.column.left .polaroid:nth-child(3) { animation-delay: 1s; }
 
-.right .polaroid:nth-child(1) { animation-delay: 0.2s; }
-.right .polaroid:nth-child(2) { animation-delay: 0.4s; }
-.right .polaroid:nth-child(3) { animation-delay: 0.6s; }
+.column.right .polaroid:nth-child(1) { animation-delay: 0.4s; }
+.column.right .polaroid:nth-child(2) { animation-delay: 0.8s; }
+.column.right .polaroid:nth-child(3) { animation-delay: 1.2s; }
 
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes floating {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-8px); }
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 }
 
-/* Animation flottante continue */
-.polaroid {
-  animation-name: fadeInUp, floating;
-  animation-duration: 0.8s, 4s;
-  animation-fill-mode: forwards, infinite;
-  animation-delay: 0.1s, 1s;
-  animation-timing-function: ease, ease-in-out;
+.floating {
+  animation: float 3s ease-in-out infinite;
 }
