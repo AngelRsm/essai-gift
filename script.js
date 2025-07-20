@@ -1,3 +1,6 @@
-// On ne fait rien ici pour le moment,
-// car les animations sont gérées en CSS.
-// On pourra plus tard ajouter les bougies ici.
+document.addEventListener("DOMContentLoaded", () => {
+  const polaroids = document.querySelectorAll(".polaroid");
+  polaroids.forEach((el, i) => {
+    el.style.animationDelay = `${i * 0.3}s`;
+  });
+});
