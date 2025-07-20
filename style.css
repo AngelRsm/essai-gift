@@ -1,87 +1,37 @@
 body {
   margin: 0;
-  background: #fff4f4;
-  font-family: sans-serif;
+  padding: 0;
+  background-color: #fff0f5;
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
 }
 
 .container {
   text-align: center;
-  padding-top: 40px;
-}
-
-.gateau-container {
-  position: relative;
-  display: inline-block;
+  margin-top: 50px;
 }
 
 .gateau {
   width: 300px;
+  margin-bottom: 40px;
 }
 
-.bougies {
-  position: absolute;
-  top: -20px;
-  left: 90px;
-  display: flex;
-  gap: 120px;
-}
-
-.bougie {
-  width: 10px;
-  height: 30px;
-  background-color: #f2b632;
-  border-radius: 5px;
-  position: relative;
-}
-
-.flamme {
-  width: 10px;
-  height: 15px;
-  background-color: orange;
-  border-radius: 50%;
-  position: absolute;
-  top: -18px;
-  left: 0;
-  animation: flame 0.3s infinite alternate;
-}
-
-@keyframes flame {
-  0% { transform: scaleY(1); }
-  100% { transform: scaleY(1.4); }
-}
-
-.polaroids {
-  margin-top: 40px;
+.polaroid-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
 }
 
 .polaroid {
-  width: 80px;
+  width: 100px;
   height: auto;
   opacity: 0;
-  transform: translateY(20px) rotate(var(--angle, 0deg));
-  animation: fadeInUp 0.6s forwards, float 3s ease-in-out infinite;
-}
-
-.left { --angle: -5deg; }
-.right { --angle: 5deg; }
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0) rotate(var(--angle));
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(var(--angle)); }
-  50% { transform: translateY(-6px) rotate(var(--angle)); }
+  transform: scale(0.8) translateY(30px);
+  transition: all 0.6s ease-out;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
 }
