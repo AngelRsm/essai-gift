@@ -1,112 +1,87 @@
 body {
   margin: 0;
-  background: #ffe6f0;
+  background: #fff4f4;
   font-family: sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  overflow: hidden;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
-  position: relative;
   text-align: center;
+  padding-top: 40px;
+}
+
+.gateau-container {
+  position: relative;
+  display: inline-block;
 }
 
 .gateau {
-  width: 250px;
-  margin-bottom: 40px;
-  z-index: 2;
-  position: relative;
+  width: 300px;
 }
 
 .bougies {
   position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: -20px;
+  left: 90px;
   display: flex;
-  gap: 40px;
+  gap: 120px;
 }
 
 .bougie {
   width: 10px;
-  height: 40px;
-  background: #fff;
-  border-radius: 2px;
+  height: 30px;
+  background-color: #f2b632;
+  border-radius: 5px;
   position: relative;
 }
 
-.bougie::before {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
+.flamme {
   width: 10px;
   height: 15px;
-  background: orange;
-  border-radius: 50% 50% 0 0;
-  animation: flame 0.4s infinite alternate;
+  background-color: orange;
+  border-radius: 50%;
+  position: absolute;
+  top: -18px;
+  left: 0;
+  animation: flame 0.3s infinite alternate;
 }
 
 @keyframes flame {
-  from {
-    transform: translateX(-50%) scaleY(1);
-    background: orange;
-  }
-  to {
-    transform: translateX(-50%) scaleY(1.2);
-    background: gold;
-  }
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(1.4); }
 }
 
-.photos {
+.polaroids {
+  margin-top: 40px;
   display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  transform: translateY(-50%);
-  padding: 0 20px;
-}
-
-.colonne {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
 .polaroid {
-  width: 100px;
+  width: 80px;
   height: auto;
-  animation: float 3s ease-in-out infinite;
   opacity: 0;
-  animation-fill-mode: forwards;
+  transform: translateY(20px) rotate(var(--angle, 0deg));
+  animation: fadeInUp 0.6s forwards, float 3s ease-in-out infinite;
 }
 
-.colonne.gauche .polaroid:nth-child(1) { animation-delay: 0.3s; transform: rotate(-5deg); }
-.colonne.gauche .polaroid:nth-child(2) { animation-delay: 0.6s; transform: rotate(-2deg); }
-.colonne.gauche .polaroid:nth-child(3) { animation-delay: 0.9s; transform: rotate(4deg); }
+.left { --angle: -5deg; }
+.right { --angle: 5deg; }
 
-.colonne.droite .polaroid:nth-child(1) { animation-delay: 0.3s; transform: rotate(6deg); }
-.colonne.droite .polaroid:nth-child(2) { animation-delay: 0.6s; transform: rotate(-4deg); }
-.colonne.droite .polaroid:nth-child(3) { animation-delay: 0.9s; transform: rotate(2deg); }
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--angle));
+  }
+}
 
 @keyframes float {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0;
-  }
-  20% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-10px) scale(1.03);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
+  0%, 100% { transform: translateY(0) rotate(var(--angle)); }
+  50% { transform: translateY(-6px) rotate(var(--angle)); }
 }
