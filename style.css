@@ -1,82 +1,57 @@
 body {
   margin: 0;
-  background-color: #fff8f0;
+  background: #fff0f5;
   font-family: sans-serif;
-  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding-top: 60px;
-  position: relative;
+  justify-content: center;
+  gap: 40px;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.gateau {
+  width: 200px;
   z-index: 1;
 }
 
-.left {
-  margin-right: 40px;
-}
-
-.right {
-  margin-left: 40px;
+.polaroids {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .polaroid {
-  width: 120px;
+  width: 100px;
   opacity: 0;
-  transform: translateY(50px) scale(0.8) rotate(0deg);
-  animation: floatIn 1s forwards;
+  transform: translateY(30px) scale(0.9) rotate(0deg);
+  animation: fadeInUp 1s ease forwards;
+  animation-delay: calc(var(--order) * 0.4s);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.p1 { animation-delay: 0.1s; transform: rotate(-5deg); }
-.p2 { animation-delay: 0.3s; transform: rotate(3deg); }
-.p3 { animation-delay: 0.5s; transform: rotate(-2deg); }
-.p4 { animation-delay: 0.7s; transform: rotate(4deg); }
-.p5 { animation-delay: 0.9s; transform: rotate(-3deg); }
-.p6 { animation-delay: 1.1s; transform: rotate(5deg); }
+/* Rotation aléatoire manuelle pour le désordre */
+.polaroids.left img:nth-child(1) { transform: rotate(-8deg); }
+.polaroids.left img:nth-child(2) { transform: rotate(5deg); }
+.polaroids.left img:nth-child(3) { transform: rotate(-3deg); }
 
-@keyframes floatIn {
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotate(var(--angle));
+.polaroids.right img:nth-child(1) { transform: rotate(4deg); }
+.polaroids.right img:nth-child(2) { transform: rotate(-6deg); }
+.polaroids.right img:nth-child(3) { transform: rotate(2deg); }
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
   }
-}
-
-.cake-container {
-  position: relative;
-  z-index: 2;
-}
-
-.cake {
-  width: 200px;
-}
-
-.candles {
-  position: absolute;
-  top: 5%;
-  left: 0;
-  width: 100%;
-  height: 20px;
-}
-
-.flame {
-  position: absolute;
-  top: 0;
-  width: 10px;
-  height: 20px;
-  background: orange;
-  border-radius: 50%;
-  animation: flicker 0.3s infinite alternate;
-}
-
-@keyframes flicker {
-  0% { transform: scale(1) translateY(0); opacity: 1; }
-  100% { transform: scale(1.1) translateY(-2px); opacity: 0.8; }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
