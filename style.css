@@ -1,29 +1,76 @@
 body {
   margin: 0;
-  padding: 0;
-  background: #fbeffb;
+  background: #ffe6f0;
   font-family: sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.scene {
+.container {
   position: relative;
   text-align: center;
 }
 
 .gateau {
-  width: 200px;
-  margin-bottom: 20px;
+  width: 250px;
+  margin-bottom: 40px;
+  z-index: 2;
+  position: relative;
+}
+
+.bougies {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 40px;
+}
+
+.bougie {
+  width: 10px;
+  height: 40px;
+  background: #fff;
+  border-radius: 2px;
+  position: relative;
+}
+
+.bougie::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 15px;
+  background: orange;
+  border-radius: 50% 50% 0 0;
+  animation: flame 0.4s infinite alternate;
+}
+
+@keyframes flame {
+  from {
+    transform: translateX(-50%) scaleY(1);
+    background: orange;
+  }
+  to {
+    transform: translateX(-50%) scaleY(1.2);
+    background: gold;
+  }
 }
 
 .photos {
   display: flex;
   justify-content: space-between;
-  width: 600px;
-  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%);
+  padding: 0 20px;
 }
 
 .colonne {
@@ -35,26 +82,31 @@ body {
 .polaroid {
   width: 100px;
   height: auto;
+  animation: float 3s ease-in-out infinite;
   opacity: 0;
-  transform: scale(0.9);
-  animation: floatIn 0.6s ease forwards;
+  animation-fill-mode: forwards;
 }
 
-.colonne.gauche .polaroid:nth-child(1) { animation-delay: 0.1s; transform: rotate(-5deg); }
-.colonne.gauche .polaroid:nth-child(2) { animation-delay: 0.3s; transform: rotate(3deg); }
-.colonne.gauche .polaroid:nth-child(3) { animation-delay: 0.5s; transform: rotate(-6deg); }
+.colonne.gauche .polaroid:nth-child(1) { animation-delay: 0.3s; transform: rotate(-5deg); }
+.colonne.gauche .polaroid:nth-child(2) { animation-delay: 0.6s; transform: rotate(-2deg); }
+.colonne.gauche .polaroid:nth-child(3) { animation-delay: 0.9s; transform: rotate(4deg); }
 
-.colonne.droite .polaroid:nth-child(1) { animation-delay: 0.2s; transform: rotate(5deg); }
-.colonne.droite .polaroid:nth-child(2) { animation-delay: 0.4s; transform: rotate(-2deg); }
-.colonne.droite .polaroid:nth-child(3) { animation-delay: 0.6s; transform: rotate(4deg); }
+.colonne.droite .polaroid:nth-child(1) { animation-delay: 0.3s; transform: rotate(6deg); }
+.colonne.droite .polaroid:nth-child(2) { animation-delay: 0.6s; transform: rotate(-4deg); }
+.colonne.droite .polaroid:nth-child(3) { animation-delay: 0.9s; transform: rotate(2deg); }
 
-@keyframes floatIn {
-  from {
+@keyframes float {
+  0% {
+    transform: translateY(0) scale(1);
     opacity: 0;
-    transform: translateY(30px) scale(0.9);
   }
-  to {
+  20% {
     opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.03);
+  }
+  100% {
     transform: translateY(0) scale(1);
   }
 }
